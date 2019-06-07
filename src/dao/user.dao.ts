@@ -44,8 +44,9 @@ export async function getUserById(uid:number){
 export async function getUserByUsernameAndPassword(username:string, password:string){
     let client:PoolClient
     try{
-        console.log('logging in')
+        console.log('kjladsflkj')
         client = await connectionPool.connect()
+        console.log('connected')
         let query = 'SELECT user_id, username, pass, firstname, lastname, email, roles.role_id, roles.role_name FROM ers.users INNER JOIN ers.roles on users.role_id = roles.role_id WHERE username = $1 and pass = $2 '
         let result = await client.query(query, [username, password])
         if(!result.rows[0]){
