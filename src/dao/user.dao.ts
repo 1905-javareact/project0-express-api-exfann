@@ -8,7 +8,7 @@ export async function getAllUsers(){
     let client:PoolClient
     try{
         client = await connectionPool.connect()
-        let result = await client.query('SELECT user_id, username, pass, firstname, lastname, email, roles.role_id, roles.role_name FROM ers.users INNER JOIN ers.roles on users.role_id = roles.role_id ')
+        let result = await client.query('SELECT user_id, username, pass, firstname, lastname, email, roles.role_id, roles.role_name FROM ers.users INNER JOIN ers.roles on users.role_id = roles.role_id ORDER BY users.user_id ASC')
         // console.log(result.rows)
         return result.rows.map(sqlUsertojsUser)
     }catch(err){
@@ -27,7 +27,8 @@ export async function getUserById(uid:number){
         // console.log(result.rows)
         // console.log(result)
         let ret = result.rows.map(user => sqlUsertojsUser(user))
-        //console.log(ret[0].role);
+        // console.log(ret[0])
+        // console.log(ret[0].role)
         
         return ret
     }
