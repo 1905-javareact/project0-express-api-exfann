@@ -51,6 +51,7 @@ export async function getUserByUsernameAndPassword(username:string, password:str
         if(!result.rows[0]){
             return 'user not found'
         }
+        console.log(result.rows[0])
         return sqlUsertojsUser(result.rows[0])
     }
     catch(err){
